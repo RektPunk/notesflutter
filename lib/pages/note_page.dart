@@ -30,7 +30,7 @@ class _NotePageState extends State<NotePage> {
                   setState(() {
                     _tempMessage = messages[index-1];
                     messages[index-1] = messages[index];
-                    messages[index] = _tempMessage!;
+                    messages[index] = _tempMessage;
                   });
                 },
                 child: const Icon(Icons.arrow_upward),
