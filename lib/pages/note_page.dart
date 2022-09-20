@@ -12,7 +12,7 @@ class NotePage extends StatefulWidget {
 class _NotePageState extends State<NotePage> {
   final textController = TextEditingController();
   List<String> messages = ['첫번째 메세지', '두번째 메세지'];
-  String? _tempMessage;
+  String _tempMessage = '첫번째 메세지';
   String _getMessage(int index) => messages[index];
 
   @override
