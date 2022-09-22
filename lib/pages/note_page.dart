@@ -12,12 +12,23 @@ class NotePage extends StatefulWidget {
 class _NotePageState extends State<NotePage> {
   final textController = TextEditingController();
   List<String> messages = ['첫번째 메세지', '두번째 메세지'];
-  String _tempMessage = '첫번째 메세지';
+  
   String _getMessage(int index) => messages[index];
   
   final SnackBar _snackBar = const SnackBar(
     content: Text('바꿀 메세지가 없습니다.'),
   );
+
+  void _messageMoveUpward(int index) {
+    String tempMessage = '';
+    if (index != 0) {
+      tempMessage = messages[index-1];
+      messages[index-1] = messages[index];
+      messages[index] = tempMessage;
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +43,7 @@ class _NotePageState extends State<NotePage> {
               leading: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    if (index != 0) {
-                      _tempMessage = messages[index-1];
-                      messages[index-1] = messages[index];
-                      messages[index] = _tempMessage;
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(_snackBar);
-                    }
+                    _messageMoveUpward(index);
                   });
                 },
                 child: const Icon(Icons.arrow_upward),
